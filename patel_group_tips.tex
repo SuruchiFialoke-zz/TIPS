@@ -1,0 +1,321 @@
+% Notes on insertion of Gaussian charge distribution
+
+%\documentclass[12pt,one side]{article}
+\documentclass[aip,jmp,superscriptaddress,reprint,onecolumn]{revtex4-1}
+%\documentclass[aps,prl,twocolumn,superscriptaddress]{revtex4}
+\usepackage{epsfig}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{fancybox}
+\usepackage{subfigure}
+\usepackage{notes2bib}
+\usepackage{courier}
+
+%\graphicspath{{./Figures/}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General symbols and brackets
+\newcommand{\degree}{^{\circ} }
+\newcommand{\erf}{\ensuremath{\mathop{\rm erf}}}
+\newcommand{\erfc}{\ensuremath{\mathop{\rm erfc}}}
+\newcommand{\rb}{\mathbf{r}}
+\newcommand{\fb}{\mathbf{f}}
+\newcommand{\xb}{\mathbf{x}}
+\newcommand{\Rb}{\mathbf{\rb_{ij}}}
+\newcommand{\kb}{\mathbf{k}}
+\newcommand{\avg}[1]{\left<#1\right>}
+\newcommand{\len}[1]{\left|#1\right|}
+\newcommand{\brac}[1]{\left[#1\right]}
+\newcommand{\curly}[1]{\left\{#1\right\}}
+\newcommand{\para}[1]{\left(#1\right)}
+
+\newcommand{\rnot}{\ensuremath{r_0}}
+\newcommand{\eLJ}{\ensuremath{\varepsilon_{\rm LJ}}}
+\newcommand{\esw}{\ensuremath{\varepsilon_{sw}}}
+\newcommand{\RHS}{\ensuremath{R_{\rm HS}}}
+\newcommand{\RHStilde}{\ensuremath{\tilde{R}_{\rm HS}}}
+\newcommand{\tmu}{\ensuremath{\theta_{\mu}}}
+\newcommand{\toh}{\ensuremath{\theta_{\rm OH}}}
+\newcommand{\Rg}{\ensuremath{R_g}}
+\newcommand{\Rgnot}{\ensuremath{R_{g0}}}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mathematical operations
+\newcommand{\tens}[1]{\underline{\underline{#1}}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\gradr}{\nabla_{\rb}}
+\newcommand{\gradk}{\nabla_{\kb}}
+\newcommand{\avect}[1]{\underline{#1}}
+\newcommand{\laplac}{\vec{\nabla}^2}
+\newcommand{\del}{\vec{\nabla}}
+\newcommand{\diverg}{\vec{\nabla}\cdot}
+\newcommand{\vdiff}[2]{\left|\vect{#1} - \vect{#2}\right|}
+\newcommand{\funcder}[2]{\frac{\delta #1}{\delta #2} }
+\newcommand{\funcsec}[3]{\frac{\delta^2\brac{#1}}{\delta\brac{#2}\delta\brac{#3}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abbreviations
+\newcommand{\ie}{\emph{i.e.}}
+\newcommand{\eg}{\emph{e.g.}}
+\newcommand{\etc}{\emph{etc.}}
+\newcommand{\etal}{\emph{et al.}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Densities
+\newcommand{\singlet}[1]{\rho^{(1)}\left(\vect{#1}\right)}
+\newcommand{\pair}[2]{\rho^{(2)}\left(\vect{#1},\vect{#2}\right)}
+\newcommand{\singletdens}{\ensuremath{\singlet{\vect{r}}}}
+\newcommand{\pairdens}{\ensuremath{\doublet{\vect{r}}{\vect{r}^\prime}}}
+\newcommand{\rhoqs}{\ensuremath{\rho^{q\sigma}}}
+\newcommand{\rhoqc}{\ensuremath{\rho^{qc}}}
+\newcommand{\rhoq}{\ensuremath{\rho^q}}
+\newcommand{\rhoqr}{\ensuremath{\rho^q_{\rm R}}}
+\newcommand{\rhor}{\ensuremath{\rho_{\rm R}}}
+\newcommand{\rhoG}{\ensuremath{\rho_G}}
+\newcommand{\rhoqq}{\ensuremath{\rho^{qq}}}
+\newcommand{\rhoqqr}{\ensuremath{\rho^{qq}_{\rm R}}}
+\newcommand{\rhoqqs}{\ensuremath{\rho^{qq\sigma}}}
+\newcommand{\frhoq}{\ensuremath{\hat{\rho}^q}}
+\newcommand{\frhoqq}{\ensuremath{\hat{\rho}^{qq}}}
+\newcommand{\frhoqqs}{\ensuremath{\hat{\rho}^{qq}}}
+\newcommand{\frhoqqo}{\ensuremath{\hat{\rho}^{(0)qq}}}
+\newcommand{\frhoqqso}{\ensuremath{\hat{\rho}^{(0)qq\sigma}}}
+\newcommand{\frhoqqt}{\ensuremath{\hat{\rho}^{(2)qq}}}
+\newcommand{\frhoqqst}{\ensuremath{\hat{\rho}^{(2)qq\sigma}}}
+\newcommand{\chiqq}{\ensuremath{\chi^{qq}}}
+\newcommand{\fchiqq}{\ensuremath{\hat{\chi}^{qq}}}
+\newcommand{\chiqqs}{\ensuremath{\chi^{qq\sigma}}}
+\newcommand{\fchiqqs}{\ensuremath{\hat{\chi}^{qq\sigma}}}
+\newcommand{\fchiqqo}{\ensuremath{\hat{\chi}^{(0)qq}}}
+\newcommand{\fchiqqt}{\ensuremath{\hat{\chi}^{(2)qq}}}
+\newcommand{\fchiqqso}{\ensuremath{\hat{\chi}^{(0)qq\sigma}}}
+\newcommand{\fchiqqst}{\ensuremath{\hat{\chi}^{(2)qq\sigma}}}
+\newcommand{\frho}{\hat{\rho}}
+\newcommand{\frhoqs}{\hat{\rho}^{q\sigma}}
+\newcommand{\frhoG}{\ensuremath{\hat{\rho}_G}}
+\newcommand{\rhos}{\rho^{(1)}}
+\newcommand{\rhosr}{\rho_{\rm R}^{(1)}}
+\newcommand{\rhop}{\rho^{(2)}}
+\newcommand{\rhopr}{\rho_{\rm R}^{(2)}}
+\newcommand{\rhob}{\rho_{\rm B}}
+\newcommand{\rhoqb}{\rho_{\rm B}^q}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fields and potentials
+\newcommand{\phiR}{\ensuremath{\phi_{\rm R}}}
+\newcommand{\phis}{\ensuremath{\phi_0}}
+\newcommand{\phil}{\ensuremath{\phi_1}}
+\newcommand{\phiRl}{\ensuremath{\phi_{\rm R1}}}
+\newcommand{\phiRLJ}{\ensuremath{\phi_{\rm R}^{\rm LJ}}}
+\newcommand{\phiRlLJ}{\ensuremath{\phi_{\rm R1}^{\rm LJ}}}
+\newcommand{\phiRlLJalpha}{\ensuremath{\phi_{\rm R1,\alpha}^{\rm LJ}}}
+\newcommand{\phiRlLJH}{\ensuremath{\phi_{\rm R1,H}^{\rm LJ}}}
+\newcommand{\phiLJ}{\ensuremath{\phi_{\rm LJ}}}
+\newcommand{\V}{\ensuremath{\mathcal{V}}}
+\newcommand{\Vr}{\ensuremath{\mathcal{V}_{\rm R}}}
+\newcommand{\Vs}{\ensuremath{\mathcal{V}_0}}
+\newcommand{\Vl}{\ensuremath{\mathcal{V}_1}}
+\newcommand{\Vrl}{\ensuremath{\mathcal{V}_{\rm R1}}}
+\newcommand{\Vext}{\ensuremath{\mathcal{V}_{\rm ext}}}
+\newcommand{\Vexts}{\ensuremath{\mathcal{V}_{0, \rm ext}}}
+\newcommand{\fVext}{\ensuremath{\hat{\mathcal{V}}_{\rm ext}}}
+\newcommand{\Vpol}{\ensuremath{\mathcal{V}_{\rm pol}}}
+\newcommand{\fVpol}{\ensuremath{\hat{\mathcal{V}}_{\rm pol}}}
+\newcommand{\Vtot}{\ensuremath{\mathcal{V}_{\rm tot}}}
+\newcommand{\fVtot}{\ensuremath{\hat{\mathcal{V}}_{\rm tot}}}
+\newcommand{\fVrl}{\ensuremath{\hat{\mathcal{V}}_{\rm R1}}}
+\newcommand{\uLJ}{\ensuremath{u_{\rm LJ}}}
+\newcommand{\sLJ}{\ensuremath{\sigma_{\rm LJ}}}
+\newcommand{\vs}{\ensuremath{v_0}}
+\newcommand{\vl}{\ensuremath{v_1}}
+\newcommand{\us}{\ensuremath{u_0(r)}}
+\newcommand{\ul}{\ensuremath{u_1}}
+\newcommand{\uwca}{\ensuremath{u_{\rm WCA}(r)}}
+\newcommand{\ua}{\ensuremath{u_{\rm attr}(r)}}
+\newcommand{\conv}{\ensuremath{\ast}}
+\newcommand{\PhiRl}{\ensuremath{\Phi_{\rm R1}}}
+\newcommand{\phiRltilde}{\ensuremath{\tilde{\phi}_{\rm R1}}}
+\newcommand{\phiRtilde}{\ensuremath{\tilde{\phi}_{\rm R}}}
+\newcommand{\fvg}{\ensuremath{\hat{v}_{\rm Q}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Various symbols
+\newcommand{\hamiltonian}{\ensuremath{\mathcal{U}}}
+\newcommand{\kT}{\ensuremath{k_{\rm B}T}}
+\newcommand{\Mb}{\ensuremath{\mathcal{M}}}
+\newcommand{\Mbs}{\ensuremath{\mathcal{M}}^\sigma}
+\newcommand{\Pb}{\ensuremath{\mathcal{P}}}
+\newcommand{\Pbs}{\ensuremath{\mathcal{P}}^\sigma}
+\newcommand{\Qb}{\ensuremath{\mathcal{Q}}}
+\newcommand{\Qbs}{\ensuremath{\mathcal{Q}}^\sigma}
+\newcommand{\Ib}{\ensuremath{\mathcal{I}}}
+\newcommand{\Ibs}{\ensuremath{\mathcal{I}}^\sigma}
+\newcommand{\Ob}{\ensuremath{\mathcal{O}}}
+\newcommand{\Hb}{\ensuremath{\mathcal{H}}}
+\newcommand{\Rbar}{\overline{\textbf{R}}}
+\newcommand{\OmR}{\Omega_{\rm R}}
+\newcommand{\Omsolv}{\Omega_{\rm solv}}
+\newcommand{\OmRsolv}{\Omega_{\rm R,solv}}
+\newcommand{\Omnsolv}{\Omega_{0,\rm solv}}
+\newcommand{\muR}{\mu_{\rm R}}
+\newcommand{\Wsolv}{W_{\rm solv}}
+\newcommand{\WR}{W_{\rm R}}
+\newcommand{\WRsolv}{W_{\rm R,solv}}
+\newcommand{\GamR}{\Gamma_{\rm R}}
+\newcommand{\betas}{\tilde{\beta}}
+\newcommand{\Fr}{\ensuremath{\mathcal{F}}}
+\newcommand{\hermite}[2]{\mathbf{H}_{#1}\para{#2}}
+\newcommand{\nb}{\ensuremath{\mathbf{n}}}
+\newcommand{\Mbf}{\ensuremath{\mathbf{M}}}
+\newcommand{\confR}{\ensuremath{\bar{\mathbf{R}}}}
+\newcommand{\nt}{\ensuremath{\tilde{N}}}
+\newcommand{\E}{\ensuremath{\mathcal{E}}}
+
+
+
+\begin{document}
+
+
+\title{Notes and Tips on GROMACS and Simulation Practices}
+
+\author{Patel Group}
+\affiliation{Department of Chemical and Biomolecular Engineering, University of Pennsylvania, Philadelphia, PA 19104}
+
+
+\date{\today}
+
+\maketitle
+
+\raggedbottom
+
+This document is a place to put any tips, tricks, or notes that may help future group members when dealing
+with GROMACS, and simulation methodologies in general.
+
+Please place your comment in an appropriate section, or start a new section if you haven't yet. Your comment should have its
+own subsection, and the subsection title should contain your name and the date of your comment (see the formatting below).
+
+Note that the tips listed here were written primarily based on experience with GROMACS 4.5.3 (the version used to implement INDUS).
+
+\section{GROMACS Issues; started by R. Remsing, 25 Feb. 2014}
+
+\subsection{Binning XTC vs. TRR files; R. Remsing, 25 Feb. 2014}
+
+Trajectories can be written to .trr or .xtc files in GROMACS, with the latter being of lesser precision.
+When your bin size becomes comparable to the precision of the .xtc file, numerical rounding errors will impact
+your results. For example, when computing a density $\rho(z)$ as a function of $z$ in a slab-like system,
+``blips'' or spurious peaks will develop in $\rho(z)$ consistently at the same $z$ values. Such artifacts
+do not appear when using the .trr file due to its higher precision. Therefore, when small bin sizes are
+to be used, one should write to and analyze a .trr file (I know I will only be writing to those from now on!).
+
+
+\section{GROMACS Tips (updated 23 Jun. 2016 by Sean Marks)}
+
+\begin{itemize}
+	\item With cutoff nonbonded potentials, GROMACS requires \texttt{rlist = rvdw = rcoulomb}
+	\item If the thermostat/barostat update frequencies \texttt{nsttcoupl} and \texttt{nstpcoupl} (number of steps for T/P coupling) are not specified, GROMACS sets them equal to \texttt{nstlist}
+	\item When using the v-rescale thermostat in the $NVT$ ensemble, the quantity "Conserv. En." printed in the \texttt{*.edr} file is incorrect. There is a conserved quantity of motion under these conditions; GROMACS simply calculates it wrong. You will always see a large, linear, negative drift in the quantity. The problem seems to also be present in GROMACS 5.1.2. A more reliable test of your simulation is to check whether the kinetic energies are $\Gamma$-distributed as expected.
+	\item Do not use the v-rescale thermostat with the velocity Verlet integrator (\texttt{md-vv}) and GROMACS 4.5.5 (e.g. cluster installations \texttt{gromacs-gcc} and \texttt{gromacs-icc}). The developers of GROMACS report an issue with this combination for 4.5.5: the thermostat causes simulations to heat up uncontrollably. This does not appear to be an issue in GROMACS 4.5.3, 4.6.7, or 5.1.2.
+	\item The v-rescale thermostat should probably be used only with \texttt{nstlist = 1}. The original paper by Bussi and Parrinello (cited in the GROMACS manual) only shows that it reproduces the canonical ensemble when it's applied after every step. Also, it is unclear from the original paper whether the thermostat is rigorously correct with the leapfrog integrator.
+	\item When simulating in Lennard-Jones reduced units, note that a reduced temperature of $T^{*} = 1$ corresponds to a GROMACS temperature of $120.2717$ (this includes the thermostat, velocity generation, and output files!). This has to do with a quirk in the way that GROMACS calculates temperature internally.
+	\item Berendsen is the best barostat for quickly equilibrating your system at the target pressure in the $NPT$ ensemble. This is important because Parrinello-Rahman can crash your simulation if you're far from equilibrium. But even if Parrinello-Rahman doesn't cause your unequilibrated system to crash, Berendsen will still equilibrate it faster.
+	\item Don't be too aggressive with your barostat coupling constant. Reasonable choices are $\tau_P = 1.0$ ps for equilibration with Berendsen and $\tau_P = 2$ ps with Parrinello-Rahman.
+\end{itemize}
+
+\section{General Simulation Practices (updated 16 Jun. 2016 by Sean Marks)}
+\begin{itemize}
+	\item Always perform energy minimization on your starting configuration. This will generally get you to equilibrium much faster and reduces the likelihood of your simulation crashing. Note that routines like \texttt{genbox} place molecules in a box pretty naively, so you should always minimize these starting configurations.
+\end{itemize}
+
+\subsection{Cautions on running NPT simulations with constrains/restraints in your system}
+Never use position constraints in $NPT$ simulations. If you need to prevent things from moving, use restraints instead. Even then, you need to be careful!
+
+\section{Running on the cluster and dealing with queueing systems; started by R. Remsing, 25 Feb. 2014}
+
+\section{C++ tips; Started by Erte Xi}
+
+When performing the type cast "int(x)" in C++, keep in mind that there are always  small floating point errors which might affect the output.
+For example, int(x/0.001) where x=2.0 will sometimes gives you 1999 instead of 2000.
+To avoid this, write int(x/0.001 + 0.5) instead, which guarantees an output of 2000. 
+
+
+\section{Cluster Tips; started by R. Remsing, 23 May 2014}
+\subsection{Writing to local scratch directory; RCR, 23 May 2014}
+You may want to write to local scratch directories on the cluster to avoid I/O issues on the head node. This may also avoid the ``out of quota" error in GROMACS.
+Below is a sample script for submitting jobs that write to scratch and then transfer everything back to your home directory:
+\\
+
+\noindent
+\texttt{\#!/bin/sh \\
+\#PBS -q big \\
+\#PBS -l nodes=1:ppn=16,pmem=2gb \\
+\#PBS -l walltime=48:00:00 \\
+\#PBS -d /home/rremsing/PredictGraphene240/Lam1/PMF/d1 \\
+\#PBS -mbe -Mrremsing@seas.upenn.edu \\
+\# Directory to be made on scratch \\
+sdir="Lam1-PMFGraphene-d1-rremsing"\\
+\# Directory on home, where you want the files to end up \\
+homedir="/home/rremsing/PredictGraphene240/Lam1/PMF/d1" \\
+\# Move to scratch directory \\
+cd /scratch-local/ \\
+\# Create directory and go there \\
+mkdir \$sdir \\
+cd \$sdir \\
+\# Transfer input files \\
+cp \$homedir/* . \\
+\# Run GROMACS \\
+module load openmpi-1.6.4-gcc \\ 
+gmxdir="/home/rremsing/GMX/gmx453\_install\_umbrellasWOO/bin" \\
+gmxmdrun="mdrun\_mpi" \\
+mpirun -np 16 \$gmxdir/\$gmxmdrun -s topol.tpr -npme 0 -nice 0 \\
+\# Move your finished files from local scratch to your home directory \\
+mv /scratch-local/\$sdir/* \$homedir \\
+\# End up in your home directory (probably don't need this step) \\
+cd \$homedir \\
+\# Remove the files from scratch so that it doesn't get crowded \\
+rm -r /scratch-local/\$sdir \\
+\# \\
+\# End of file 
+}
+
+\subsection{Using the interactive queue; RCR, 11 Sep. 2014}
+When running any code that takes any significant amount time, the head node on the cluster should not be used.
+This can cause issues with other people's jobs.
+Instead, you should use the interactive queue, which allows you to run your code on another node using the command line.
+This can be done using the command
+\\
+
+\noindent
+\texttt{ qsub -q interactive -I -V -l nodes=<nodes>:ppn=<ppn>,walltime=<walltime>,pmem=<pmem>}
+\\
+
+\noindent
+Here, \texttt{<nodes>} is the number of nodes, \texttt{<ppn>} is the number of processors per node, \texttt{<walltime>} is the wall time for the job,
+and \texttt{<pmem>} is the memory to allocate per processor.
+The queue for the interactive job is \texttt{interactive}. 
+The options specified are specific to the \texttt{qsub} command; \texttt{-I} indicates that you want to run the job interactively,
+\texttt{-V} exports your environment variables to your job, so that your environment variables are the same when you are working interactively on a node,
+and \texttt{-l} indicates that the following argument is your resource list, \ie \ nodes, walltime, etc. You can look at the man-page for \texttt{qsub} is you
+would like further details (by entering \texttt{man qsub} on the command line).
+
+
+\section{ImageMagick, Creating gifs; Started by Suruchi}
+
+\noindent
+To create an animated GIF image, ImageMagick has a routine that is quite helpful called convert. 
+\\
+\\
+convert   -delay 20   -loop 0   sphere*.png   animatespheres.gif
+\\
+\\
+This will take all of the source frames and will make them into one animated GIF image called animatespheres.gif. The -delay 20 argument will cause a 20 hundredths of a second delay between each frame, and the -loop 0 will cause the gif to loop over and over again.
+
+
+
+\end{document}
+%
+% ****** End of file template.aps ******
