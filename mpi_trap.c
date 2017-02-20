@@ -1,5 +1,6 @@
 /* File:    mpi_trap.c
- *
+ * Modified by: Suruchi Fialoke
+ * Date Created: 01/11/2015
  * Purpose: Implement parallel trapezoidal rule allowing user input
  *          of data
  *
