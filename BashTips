@@ -11,3 +11,18 @@ infile.ignore(10000,'\n');
 
 #VIM set tabs, imp for python
 :set tabstop=4
+
+# User specific aliases and functions
+
+        alias cluster='ssh -Y ssuruchi@cluster.name'
+        alias y='rlwrap /Users/suruchi/Install_codes/yorick-2.1/yorick/yorick'
+        alias se='rlwrap evolver'
+        alias gp='gnuplot'
+        alias p='pwd'
+        alias ll='ls -lh'
+        alias ls='ls -G'
+export TERM="xterm-color"
+PS1='\[\e[0;31m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;34m\]\w\[\e[0m\]\$ '
+
+#PATH=/usr/local/gromacs:$PATH; export PATH
+source /usr/local/gromacs/bin/GMXRC
