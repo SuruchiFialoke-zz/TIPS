@@ -1,0 +1,13 @@
+
+# Pipe commands to Gromacs functions
+echo 3 3 | g_rms -flags
+
+example hydrogen bonds between group index X and Y is
+ echo X Y | g_hbond_mpi -f traj.xtc -s mdrun.tpr -num
+
+
+#ignore line in C++
+infile.ignore(10000,'\n');
+
+#VIM set tabs, imp for python
+:set tabstop=4
